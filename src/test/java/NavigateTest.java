@@ -24,6 +24,8 @@ public class NavigateTest extends BaseTestClass {
 
         home.act().clickNewsButton();
 
+      //  news.get().
+
         news.act().clickEnglandButton();
 
         england.act().clickLocalNewsButton();
