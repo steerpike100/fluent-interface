@@ -15,10 +15,10 @@ public class GetController {
 
     WebDriver driver = getChromeDriver();
 
-    private List<String> regions(){
-        List<WebElement> regions = driver.findElements(By.xpath("//li[@class='gs-o-list-ui__item--flush gel-long-primer gs-u-display-block nw-c-nav__secondary-menuitem-container']//span"));
+    public List<String> categories(){
+        List<WebElement> regions = driver.findElements(By.xpath("//nav[@class='orb-nav']//ul//li//a"));
 
-        assertTrue(((List) regions).size() !=0, "List is emoty, filed to collect regions");
+        assertTrue(((List) regions).size() !=0, "List is empty, filed to collect categories");
 
         return regions.stream()
                 .map(WebElement::getText)
