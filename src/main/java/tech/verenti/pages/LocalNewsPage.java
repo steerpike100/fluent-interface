@@ -1,23 +1,56 @@
 package tech.verenti.pages;
 
-import tech.verenti.utils.LocalNewsPageActionController;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import tech.verenti.utils.DistanceFrom;
 
-public class LocalNewsPage {
+public class LocalNewsPage extends PageBase {
 
-    private LocalNewsPageActionController act;
+    private By locationHeader = By.cssSelector("#skip-to-content");
 
-    private LocalNewsPage(LocalNewsPageActionController act){
-        this.act = act;
+    public LocalNewsPage(WebDriver driver){
+        this.driver = driver;
     }
 
-
-    public LocalNewsPageActionController act(){
-        return act;
+    public LocalNewsPage clickNewsButton() {
+        WebElement newsButton = driver.findElement(By.className("orb-nav-news"));
+        newsButton.click();
+        return this;
     }
 
-    public static LocalNewsPage getLocalNewsPage(){
-        return new LocalNewsPage(new LocalNewsPageActionController()    );
+//    public LocalNewsPage enterLocality(String value) {
+//        WebElement localNews = driver.findElement(By.id("ls-c-search__input-label"));
+//        type("", value);
+//        localNews.sendKeys(value);
+//        return this;
+//    }
+
+    public LocalNewsPage setAsLocalNews(){
+        WebElement yesButton = driver.findElement(By.cssSelector(".gs-u-display-inline-block > button"));
+        yesButton.click();
+        return this;
     }
 
+    public static By localNewsSavedDiv() {
+        return By.className("js-chosen-region");
+    }
 
-}
+    public By checkLocationHeader() {
+        return locationHeader;
+    }
+
+    public void checkDisplayed() {
+        assert (isDisplayed(localNewsPage().checkLocationHeader(), 10));
+
+    }
+        public LocalNewsPage setDistance (DistanceFrom value){
+            WebElement setDistanceButton = driver.findElement(By.xpath(value.toString()));
+            setDistanceButton.click();
+            return this;
+        }
+
+
+    }

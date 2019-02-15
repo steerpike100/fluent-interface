@@ -1,25 +1,21 @@
 package tech.verenti.pages;
 
-import tech.verenti.utils.EnglandHomePageActionController;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-public class EnglandHomePage {
+public class EnglandHomePage extends PageBase {
 
-    private EnglandHomePageActionController act;
-
-    private EnglandHomePage(EnglandHomePageActionController act) {
-        this.act = act;
+    public EnglandHomePage(WebDriver driver){
+        this.driver = driver;
     }
 
-    public EnglandHomePageActionController act() {
-        return act;
+    public EnglandHomePage clickLocalNewsButton() {
+        WebElement newsButton = driver.findElement(By.xpath("\t//a[contains(@class,'navigation-wide-list__link navigation-wide-list__link--first')]//span[contains(text(),'Local News')]"));
+        newsButton.click();
+        return this;
     }
 
-
-    public static EnglandHomePage getEnglandHomePage() {
-
-        return new EnglandHomePage(new EnglandHomePageActionController());
-
-    }
 
 
 }

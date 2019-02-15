@@ -4,17 +4,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.Test;
+import tech.verenti.utils.TestBase;
 import tech.verenti.utils.VerifyController;
 
-import static tech.verenti.DriverFactory.getChromeDriver;
+public class AbstractPage extends PageBase {
 
-public class AbstractPage {
-
-    protected WebDriver driver = getChromeDriver();
     private VerifyController verify;
 
-    private AbstractPage() {
-        // hide it
+    public AbstractPage(WebDriver driver){
+        this.driver=driver;
     }
 
     private AbstractPage(VerifyController verify){
@@ -25,8 +24,8 @@ public class AbstractPage {
         return verify;
     }
 
-    public static AbstractPage getAbstractPage() {
-        return new AbstractPage(new VerifyController());
+    public static AbstractPage getAbstractPage(WebDriver driver) {
+        return new AbstractPage(new VerifyController(driver));
     }
 
 
@@ -40,16 +39,6 @@ public class AbstractPage {
         return this;
     }
 
-    public AbstractPage TypeInField(WebElement element, String value){
-        String val = value;
-        element.clear();
 
-        for (int i = 0; i < val.length(); i++){
-            char c = val.charAt(i);
-            String s = new StringBuilder().append(c).toString();
-            element.sendKeys(s);
-        }
-        return this;
-    }
 
 }

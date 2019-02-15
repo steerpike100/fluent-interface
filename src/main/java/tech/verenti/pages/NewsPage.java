@@ -1,32 +1,71 @@
 package tech.verenti.pages;
 
-import tech.verenti.utils.GetController;
-import tech.verenti.utils.NewsPageActionController;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-public class NewsPage {
+import java.util.List;
 
-    private NewsPageActionController act;
-    private GetController get;
+import static java.util.stream.Collectors.toList;
+import static org.testng.Assert.assertTrue;
 
+public class NewsPage extends PageBase {
 
-    private NewsPage(NewsPageActionController act, GetController get) {
-        this.act = act;
-        this.get = get;
+    public NewsPage(WebDriver driver){
+        this.driver=driver;
     }
 
-    public GetController get() {
-        return get;
+    public NewsPage clickNewsButton() {
+        WebElement newsButton = driver.findElement(By.className("orb-nav-news"));
+        newsButton.click();
+        return this;
     }
 
-    public NewsPageActionController act() {
-        return act;
+    public NewsPage clickEnglandButton() throws InterruptedException {
+        WebElement englandButton = driver.findElement(By.linkText("England"));
+        englandButton.click();
+        Thread.sleep(2000);
+        return this;
     }
 
+    public NewsPage clickNIrelanddButton() {
+        WebElement nirelandButton = driver.findElement(By.linkText("N.Ireland"));
+        nirelandButton.click();
+        return this;
+    }
 
-    public static NewsPage getNewsPage() {
+    public NewsPage clickScotlandButton() {
+        WebElement scotlandButton = driver.findElement(By.linkText("Scotland"));
+        scotlandButton.click();
+        return this;
+    }
 
-        return new NewsPage(new NewsPageActionController(), new GetController());
+    public NewsPage clickAlbaButton() {
+        WebElement albaButton = driver.findElement(By.linkText("Alba"));
+        albaButton.click();
+        return this;
+    }
 
+    public NewsPage clickWalesButton() {
+        WebElement walesButton = driver.findElement(By.linkText("Wales"));
+        walesButton.click();
+        return this;
+    }
+
+    public NewsPage clickCymruButton() {
+        WebElement cymruButton = driver.findElement(By.linkText("Cymru"));
+        cymruButton.click();
+        return this;
+    }
+
+    public List<String> categories(){
+        List<WebElement> regions = driver.findElements(By.xpath("//nav[@class='orb-nav']//ul//li//a"));
+
+        assertTrue(((List) regions).size() !=0, "List is empty, filed to collect categories");
+
+        return regions.stream()
+                .map(WebElement::getText)
+                .collect(toList());
     }
 
 }

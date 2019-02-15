@@ -1,22 +1,20 @@
 package tech.verenti.pages;
 
-import tech.verenti.utils.HomePageActionController;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-public class HomePage {
+public class HomePage extends PageBase{
 
-    private HomePageActionController act;
-
-    private HomePage(HomePageActionController act){
-        this.act = act;
+    public HomePage(WebDriver driver){
+        this.driver = driver;
     }
 
 
-    public HomePageActionController act(){
-        return act;
-    }
-
-    public static HomePage getHomePage(){
-        return new HomePage(new HomePageActionController());
+    public HomePage clickNewsButton() {
+        WebElement newsButton = driver.findElement(By.className("orb-nav-news"));
+        newsButton.click();
+        return this;
     }
 
 

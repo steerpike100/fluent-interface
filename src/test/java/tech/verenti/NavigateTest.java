@@ -1,53 +1,38 @@
 package tech.verenti;
 
 import org.testng.annotations.Test;
-import tech.verenti.pages.*;
+import tech.verenti.pages.PageBase;
 import tech.verenti.utils.DistanceFrom;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static tech.verenti.pages.AbstractPage.getAbstractPage;
-import static tech.verenti.pages.EnglandHomePage.getEnglandHomePage;
-import static tech.verenti.pages.HomePage.getHomePage;
-import static tech.verenti.pages.LocalNewsPage.*;
-import static tech.verenti.pages.NewsPage.getNewsPage;
-import static tech.verenti.utils.LocalNewsPageActionController.localNewsSavedDiv;
-import static tech.verenti.utils.LocalNewsPageActionController.locationHeader;
+import static tech.verenti.pages.LocalNewsPage.localNewsSavedDiv;
 
-public class NavigateTest extends BaseTestClass {
+public class NavigateTest extends PageBase {
 
-    HomePage home = getHomePage();
-    NewsPage news = getNewsPage();
-    EnglandHomePage england = getEnglandHomePage();
-    LocalNewsPage local = getLocalNewsPage();
-    AbstractPage abstractPage = getAbstractPage();
+
 
 
     @Test
     public void basicFilterByTest() throws InterruptedException {
 
-        home.act().clickNewsButton();
+        homePage().clickNewsButton();
 
-        news.act().clickEnglandButton();
+        newsPage().clickEnglandButton();
 
-        england.act().clickLocalNewsButton();
+        englandHomePage().clickLocalNewsButton();
 
-        local.act().setAsLocalNews();
+        localNewsPage().setAsLocalNews();
 
-        abstractPage.verify()
-                .verifyIsDisplayed(localNewsSavedDiv());
+        localNewsPage().setDistance(DistanceFrom.FIVEMILES);
 
-        local.act().setDistance(DistanceFrom.FIVEMILES);
-
-        abstractPage.verify()
-                .verifyIsDisplayed(locationHeader());
-
+        assertThat(isDisplayed(localNewsPage().checkLocationHeader(), 10));
     }
 
     @Test
-    public void regionListcheck(){
-        List<String> regionList =  news.get().categories();
+    public void regionListcheck() {
+        List<String> regionList = newsPage().categories();
         assertThat(regionList)
                 .hasSize(19)
                 .contains("News", "Sport", "Weather", "iPlayer", "Sounds");
