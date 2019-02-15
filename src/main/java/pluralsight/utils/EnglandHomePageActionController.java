@@ -14,7 +14,7 @@ public class EnglandHomePageActionController {
     WebDriverWait wait = getWebDriverWait();
 
     public EnglandHomePageActionController clickLocalNewsButton() {
-        WebElement newsButton = driver.findElement(By.xpath("//nav[@class='navigation-wide-list navigation-wide-list--secondary']//span"));
+        WebElement newsButton = driver.findElement(By.xpath("\t//a[contains(@class,'navigation-wide-list__link navigation-wide-list__link--first')]//span[contains(text(),'Local News')]"));
         newsButton.click();
         return this;
     }
