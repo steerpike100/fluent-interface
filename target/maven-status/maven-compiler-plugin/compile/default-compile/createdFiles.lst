@@ -1,0 +1,15 @@
+tech\verenti\framework\EnvironmentConfiguration.class
+tech\verenti\pages\PageBase.class
+tech\verenti\webdriver\WebDriverInvoker.class
+tech\verenti\webdriver\WebDriverManager.class
+tech\verenti\pages\NewsPage.class
+tech\verenti\pages\LocalNewsPage.class
+tech\verenti\pages\RegionList.class
+tech\verenti\framework\DriverPaths.class
+tech\verenti\framework\Config.class
+tech\verenti\pages\HomePage.class
+tech\verenti\utils\DistanceFrom.class
+tech\verenti\webdriver\WebDriverConfigBean.class
+tech\verenti\pages\EnglandHomePage.class
+tech\verenti\pages\LocalityList.class
+tech\verenti\framework\TestBase.class

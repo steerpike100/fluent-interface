@@ -1,7 +1,7 @@
 package tech.verenti.pages;
 
 import org.openqa.selenium.support.PageFactory;
-import tech.verenti.utils.TestBase;
+import tech.verenti.framework.TestBase;
 
 public class PageBase extends TestBase {
 
@@ -21,8 +21,5 @@ public class PageBase extends TestBase {
         return PageFactory.initElements(driver, LocalNewsPage.class);
     }
 
-    protected AbstractPage abstractPage() {
-        return PageFactory.initElements(driver, AbstractPage.class);
-    }
 
 }

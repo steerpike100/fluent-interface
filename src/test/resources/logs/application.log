@@ -1,4 +1,5 @@
-13:04:18,088 DEBUG devpinoyLogger:44 - Config file loaded!!!
-13:04:20,464 DEBUG devpinoyLogger:70 - Chrome Launched !!!
-13:04:23,154 DEBUG devpinoyLogger:80 - Navigated to : http://www.bbc.co.uk
-13:04:33,771 DEBUG devpinoyLogger:96 - test execution completed !!!
+15:21:47,625 DEBUG WebDriverManager:47 - Running the test in bbcUK environment - opening browserchrome
+15:21:51,609 DEBUG WebDriverInvoker:42 - Invoking webDriver#toString
+15:21:51,610 DEBUG WebDriverManager:53 - Cearted threadsafe WebDriver proxy ChromeDriver: chrome on XP (84c77df6e4baee1f7bdbb5cf441a1e3c)
+15:21:51,611 DEBUG devpinoyLogger:39 - Using base URL: https://www.bbc.co.uk
+15:21:53,562 DEBUG devpinoyLogger:51 - test execution completed !!!
