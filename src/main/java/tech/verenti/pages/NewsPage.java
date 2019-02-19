@@ -15,6 +15,8 @@ public class NewsPage extends PageBase {
         this.driver=driver;
     }
 
+    private By regions = By.xpath("//nav[@class='orb-nav']//ul//li//a");
+
     public NewsPage clickNewsButton() {
         WebElement newsButton = driver.findElement(By.className("orb-nav-news"));
         newsButton.click();
@@ -59,11 +61,13 @@ public class NewsPage extends PageBase {
     }
 
     public List<String> categories(){
-        List<WebElement> regions = driver.findElements(By.xpath("//nav[@class='orb-nav']//ul//li//a"));
 
-        assertTrue(((List) regions).size() !=0, "List is empty, filed to collect categories");
+        List<WebElement> regionsList;
+        regionsList = findAll(regions);
 
-        return regions.stream()
+        assertTrue((regionsList).size() !=0, "List is empty, filed to collect categories");
+
+        return regionsList.stream()
                 .map(WebElement::getText)
                 .collect(toList());
     }

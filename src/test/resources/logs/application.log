@@ -1,5 +1,5 @@
-15:21:47,625 DEBUG WebDriverManager:47 - Running the test in bbcUK environment - opening browserchrome
-15:21:51,609 DEBUG WebDriverInvoker:42 - Invoking webDriver#toString
-15:21:51,610 DEBUG WebDriverManager:53 - Cearted threadsafe WebDriver proxy ChromeDriver: chrome on XP (84c77df6e4baee1f7bdbb5cf441a1e3c)
-15:21:51,611 DEBUG devpinoyLogger:39 - Using base URL: https://www.bbc.co.uk
-15:21:53,562 DEBUG devpinoyLogger:51 - test execution completed !!!
+15:14:35,789 DEBUG WebDriverManager:46 - Running the test in bbcUK environment - opening browserchrome
+15:14:39,401 DEBUG WebDriverInvoker:42 - Invoking webDriver#toString
+15:14:39,401 DEBUG WebDriverManager:52 - Cearted threadsafe WebDriver proxy RemoteWebDriver: chrome on LINUX (9850dbdfe9608d7c8187ac0682dcf408)
+15:14:39,401 DEBUG devpinoyLogger:40 - Using base URL: https://www.bbc.co.uk
+15:15:15,494 DEBUG devpinoyLogger:54 - test execution completed !!!

@@ -4,8 +4,9 @@
 
     <!--SUITE LEVEL PARAMS-->
     <parameter name="env" value="bbcUK"/>
-    <parameter name="browser" value="chrome"/>
-    <parameter name="mode" value="SINGLE"/>
+    <parameter name="browserName" value="chrome"/>
+    <parameter name="platformName" value="ANY"/>
+    <parameter name="mode" value="GRID"/>
 
     <test name="BBC">
         <!--TESTS TO RUN-->

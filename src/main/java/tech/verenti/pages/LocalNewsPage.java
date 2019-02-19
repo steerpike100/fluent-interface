@@ -10,6 +10,7 @@ import tech.verenti.utils.DistanceFrom;
 public class LocalNewsPage extends PageBase {
 
     private By locationHeader = By.cssSelector("#skip-to-content");
+    private By yesButton = By.cssSelector(".gs-u-display-inline-block > button");
 
     public LocalNewsPage(WebDriver driver){
         this.driver = driver;
@@ -29,8 +30,8 @@ public class LocalNewsPage extends PageBase {
 //    }
 
     public LocalNewsPage setAsLocalNews(){
-        WebElement yesButton = driver.findElement(By.cssSelector(".gs-u-display-inline-block > button"));
-        yesButton.click();
+        waitForIsDisplayed(yesButton, 10);
+        click(yesButton);
         return this;
     }
 

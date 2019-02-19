@@ -9,7 +9,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.HasInputDevices;
-import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindAll;
@@ -45,7 +44,7 @@ public class WebDriverManager {
 
     private WebDriver createBrowser(WebDriverConfigBean config, Class<?> invokingClass) {
         log.debug("Running the test in " + config.getEnvironment() + " environment - opening browser" +
-                config.getBrowserType());
+                config.getBrowserName());
         WebDriver underlyingWebDriver = createUnderlyingBrowser(config, invokingClass);
         threadDriver.set(underlyingWebDriver);
 
@@ -79,7 +78,7 @@ public class WebDriverManager {
     private WebDriver openLocalBrowser(WebDriverConfigBean config) {
         try {
 
-            switch (config.getBrowserType().toUpperCase()) {
+            switch (config.getBrowserName().toUpperCase()) {
                 case "CHROME":
                     System.setProperty("webdriver.chrome.driver", DriverPaths.CHROMEPATH);
                     ChromeOptions options = new ChromeOptions();
@@ -106,21 +105,22 @@ public class WebDriverManager {
                     System.setProperty("webdriver.gecko.driver", DriverPaths.FIREFOXPATH);
                     return new FirefoxDriver();
                 default:
-                    throw new IllegalArgumentException("Unsupported browser type: " + config.getBrowserType() +
+                    throw new IllegalArgumentException("Unsupported browser type: " + config.getBrowserName() +
                             "expected 'chrome' or 'firefox' or 'IE'");
             }
 
         } catch (Exception e) {
-            log.error("Failed to open browser " + config.getBrowserType());
+            log.error("Failed to open browser " + config.getBrowserName());
             throw new IllegalStateException(e);
         }
     }
 
     private WebDriver initialiseGrid(WebDriverConfigBean config) {
-        String hubUrl = "http://localhost:4444/wd/hub";
+        String hubUrl = "http://192.168.99.100:4446/wd/hub";
         try {
             DesiredCapabilities caps = new DesiredCapabilities();
-            caps.setCapability(CapabilityType.BROWSER_NAME, config.getBrowserType());
+            caps.setBrowserName(config.getBrowserName());
+            caps.setPlatform(config.getPlatformName());
             return new RemoteWebDriver(new URL(hubUrl), caps);
         } catch (MalformedURLException e) {
             throw new IllegalStateException("Malformed Selenium hub URL " + hubUrl, e);

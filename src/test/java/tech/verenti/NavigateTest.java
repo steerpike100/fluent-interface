@@ -14,7 +14,7 @@ public class NavigateTest extends PageBase {
 
 
 
-    @Test
+    @Test(invocationCount = 3)
     public void basicFilterByTest() throws InterruptedException {
 
         homePage().clickNewsButton();
@@ -30,7 +30,7 @@ public class NavigateTest extends PageBase {
         assertThat(isDisplayed(localNewsPage().checkLocationHeader(), 10));
     }
 
-    @Test
+    @Test(invocationCount = 3)
     public void regionListcheck() {
         List<String> regionList = newsPage().categories();
         assertThat(regionList)

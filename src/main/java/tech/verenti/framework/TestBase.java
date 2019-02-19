@@ -26,17 +26,20 @@ public class TestBase {
     private static Logger log = Logger.getLogger("devpinoyLogger");
 
     @BeforeSuite
-    @Parameters({"env", "browser","mode"})
-    public void startUpBrowser(String env, String browser, String mode) {
+    @Parameters({"env", "browserName", "platformName","mode"})
+    public void startUpBrowser(String env, String browserName, Platform platformName, String mode) {
         EnvironmentConfiguration.populate(env);
         WebDriverConfigBean webDriverConfig = aWebDriverConfig()
                 .withDeploymentEnvironment(env)
-                .withBrowser(browser)
+                .withBrowser(browserName)
+                .withPlatform(platformName)
                 .withSeleniumMode(mode);
 
         driver = WebDriverManager.openBrowser(webDriverConfig, getClass());
         String baseURL = EnvironmentConfiguration.getBaseURL();
         log.debug("Using base URL: " + baseURL);
+
+        navigateTo(baseURL);
 
         waitForPageToLoad();
     }
